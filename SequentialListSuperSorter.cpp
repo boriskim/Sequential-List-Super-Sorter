@@ -57,7 +57,6 @@ void SequentialListSuperSorter::print() const
 	cout << " **************Print End************** \n";
 }
 
-// NOTE on inserts: do NOT grow the array if we reach capacity. Simply return false.
 bool SequentialListSuperSorter::insert_front(DataType val)
 {
 	if(full())
