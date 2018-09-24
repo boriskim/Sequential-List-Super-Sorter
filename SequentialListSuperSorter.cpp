@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// This is the constructor.
+// Data Constructor. Initializes the array with inputted capacity.
 SequentialListSuperSorter::SequentialListSuperSorter(unsigned int cap)
 {
 	data_ = new DataType[cap];
@@ -14,11 +14,13 @@ SequentialListSuperSorter::SequentialListSuperSorter(unsigned int cap)
 	size_= 0;
 }
 
+// Destructor to prevent memory leaks.
 SequentialListSuperSorter::~SequentialListSuperSorter()
 {
 	delete[] data_;
 }
 
+// Returns true if empty.
 bool SequentialListSuperSorter::empty() const
 {
 	if(size_ == 0)
@@ -27,16 +29,20 @@ bool SequentialListSuperSorter::empty() const
 		return false;
 }
 
+// Returns size of Sequential List.
 unsigned int SequentialListSuperSorter::size() const
 {
 	return size_;
 }
 
+// Returns capacity of Sequential List.
 unsigned int SequentialListSuperSorter::capacity() const
 {
 	return capacity_;
 }
 
+
+// Returns true if full.
 bool SequentialListSuperSorter::full() const
 {
 	if(size_ == capacity_)
@@ -45,9 +51,12 @@ bool SequentialListSuperSorter::full() const
 		return false;
 }
 
+// Print function to see data inside.
 void SequentialListSuperSorter::print() const
 {
 	cout << " **************Print Start************** \n";
+
+	cout << "Capacity: " << capacity_ << "Size: " << size_ << endl;
 
 	for(int i = 0; i < size_; i++)
 	{
@@ -57,10 +66,13 @@ void SequentialListSuperSorter::print() const
 	cout << " **************Print End************** \n";
 }
 
+// Insert at the front of the array.
 bool SequentialListSuperSorter::insert_front(DataType val)
 {
+	// Returns false if the array is full.
 	if(full())
 		return false;
+	// Inserts to index 0 if array is empty.
 	else if(empty())
 	{
 		data_[0] = val;
@@ -68,6 +80,7 @@ bool SequentialListSuperSorter::insert_front(DataType val)
 
 		return true;
 	}
+	// Pushes all data one index up, then inserts new data in index 0.
 	else
 	{
 		for(int i = size_; i > 0; i--)
@@ -80,10 +93,14 @@ bool SequentialListSuperSorter::insert_front(DataType val)
 	}
 }
 
+// Remove front.
 bool SequentialListSuperSorter::remove_front()
 {
+	// Returns false if empty.
 	if(empty())
 		return false;
+
+	// Pulls data one index forward, then assigns the previous largest index to NULL.
 	else
 	{
 		for(int i = 0; i < size_; i++)
@@ -96,6 +113,7 @@ bool SequentialListSuperSorter::remove_front()
 	}
 }
 
+// Simple insert into end of array.
 bool SequentialListSuperSorter::insert_back(DataType val)
 {
 	if(full())
@@ -109,6 +127,7 @@ bool SequentialListSuperSorter::insert_back(DataType val)
 	}
 }
 
+// Simple remove from end of array.
 bool SequentialListSuperSorter::remove_back()
 {
 	if(empty())
@@ -122,6 +141,7 @@ bool SequentialListSuperSorter::remove_back()
 	}
 }
 
+// Inserts data at inputted index.
 bool SequentialListSuperSorter::insert(DataType val, unsigned int index)
 {
 	if(full() || index > size_)
@@ -138,6 +158,7 @@ bool SequentialListSuperSorter::insert(DataType val, unsigned int index)
 	}
 }
 
+// Removes data at specified index.
 bool SequentialListSuperSorter::remove(unsigned int index)
 {
 	if(empty() || index >= size_)
@@ -154,6 +175,8 @@ bool SequentialListSuperSorter::remove(unsigned int index)
 	}
 }
 
+
+// Searches for the data value within the Sequential List.
 unsigned int SequentialListSuperSorter::search(DataType val) const
 {
 	for(int i = 0; i < size_; i++)
@@ -164,6 +187,7 @@ unsigned int SequentialListSuperSorter::search(DataType val) const
 	return size();
 }
 
+// Returns the data at the inputted index.
 SequentialListSuperSorter::DataType SequentialListSuperSorter::select(unsigned int index) const
 {
 	if(index >= size_)
@@ -172,6 +196,8 @@ SequentialListSuperSorter::DataType SequentialListSuperSorter::select(unsigned i
 		return data_[index];
 }
 
+
+// Replaces the data at the inputted index with new inputted data.
 bool SequentialListSuperSorter::replace(unsigned int index, DataType val)
 {
 	if(empty() || index >= size_)
@@ -184,10 +210,13 @@ bool SequentialListSuperSorter::replace(unsigned int index, DataType val)
 	}
 }
 
+// Bubble Sort.
 void SequentialListSuperSorter::bubble_sort()
 {
+	// Initialize change counter to -1, so it does not break the loop below.
 	int change_counter = -1;
 
+	//Continues to compare and switch values within the array until no more switches are made.
 	while(change_counter != 0)
 	{
 		change_counter = 0;
@@ -207,8 +236,10 @@ void SequentialListSuperSorter::bubble_sort()
 	return;
 }
 
+//Selection Sort.
 void SequentialListSuperSorter::selection_sort()
 {
+	// Searches through the array for the smallest value and continuously pushes it to the front of the array.
 	for(int i = 0; i < size_; i++)
 	{
 		int min_ = 999;
@@ -227,6 +258,7 @@ void SequentialListSuperSorter::selection_sort()
 	return;
 }
 
+// Insertion Sort.
 void SequentialListSuperSorter::insertion_sort()
 {
 	int unsorted_list[size_];
@@ -253,6 +285,7 @@ void SequentialListSuperSorter::insertion_sort()
 	return;
 }
 
+// Merge Sort.
 void SequentialListSuperSorter::merge_sort(int left, int right)
 {
 	if(right > left)
@@ -268,6 +301,7 @@ void SequentialListSuperSorter::merge_sort(int left, int right)
 	return;
 }
 
+// Quick Sort.
 void SequentialListSuperSorter::quick_sort(int low, int high)
 {
 	if(low < high)
@@ -280,15 +314,18 @@ void SequentialListSuperSorter::quick_sort(int low, int high)
 	return;
 }
 
+// Heap Sort.
 void SequentialListSuperSorter::heap_sort()
 {
 	PriorityQueue Q1(size);
 
+	// Heapify the Sequential List.
 	for(int i = 0; i < size_; i++)
 		Q1.enqueue(data_[i]);
 
 	int j = size - 1;
 
+	// Continuously dequeue, giving out the next largest value each time.
 	while(!Q1.empty())
 	{
 		data_[j] = Q1.max();
@@ -299,6 +336,7 @@ void SequentialListSuperSorter::heap_sort()
 	return;
 }
 
+// Partition method for Quick Sort.
 int SequentialListSuperSorter::partition(int low, int high)
 {
 	if(high - low == 1)
@@ -344,6 +382,8 @@ int SequentialListSuperSorter::partition(int low, int high)
 	}
 }
 
+
+// Merge method for Merge Sort.
 void SequentialListSuperSorter::merge(int & left, int & mid, int & right)
 {
 	if(right - left == 1)

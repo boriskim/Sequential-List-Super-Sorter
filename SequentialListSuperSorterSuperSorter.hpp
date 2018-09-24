@@ -9,7 +9,7 @@ class SequentialListSuperSorter
 public:
     typedef int DataType;
 
-// CONSTRUCTORS/DESTRUCTOR
+// Constructors/Destructors.
 public:
     // Constructor. Create a new SequentialList with the given number of elements. Initialize
     // member variables here.
@@ -17,7 +17,7 @@ public:
     // Destructor. Destroy this SequentialList, freeing all dynamically allocated memory.
     ~SequentialListSuperSorter();
 
-// ACCESSOR METHODS
+// Accessor Methods.
 public:
     // Returns the number of elements in the list.
     unsigned int size() const;
@@ -36,7 +36,7 @@ public:
     // Prints all elements in the list to the standard output.
     void print() const;
 
-// MUTATOR METHODS (alters member variables)
+// Mutator Methods. (alters member variables)
 public:
     // Inserts a value into the list at a given index.
     bool insert(DataType val, unsigned int index);
@@ -65,7 +65,7 @@ public:
     // Sorts via Heap sort.
     void heap_sort();
   
-// MEMBER VARIABLES
+// Member Variables.
 private:
     // A pointer to the block of memory allocated to store the list data.
     DataType *data_;
@@ -78,11 +78,11 @@ private:
     int partition(int low, int high);
     void merge(int & left, int & mid, int & right);
 
-// COPY CONSTRUCTOR/ASSIGNMENT OPERATOR: You can safely ignore these (but don't change them).
+// Copy Constructor/Assignment operators.
 private:
-    // Copy constructor. Declared private so we don't use it incorrectly.
+    // Copy constructor.
     SequentialListSuperSorter(const SequentialList& rhs) {}
-    // Assignment operator. Declared private so we don't use it incorrectly.
+    // Assignment operator.
     SequentialListSuperSorter& operator=(const SequentialList& rhs) {}
 };
 
